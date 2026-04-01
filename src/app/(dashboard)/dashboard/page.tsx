@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Link from "next/link";
 import { toast } from "sonner";
 import {
-  Plus, Search, Filter, ChevronLeft, ChevronRight,
-  Pencil, Trash2, Check, RotateCcw, Loader2, ClipboardList,
-  LayoutGrid, List, X, AlertTriangle,
+  Plus, Search, ChevronLeft, ChevronRight,
+  Pencil, Trash2, Check, Loader2, ClipboardList,
+  LayoutGrid, List, X, AlertTriangle, Eye,
 } from "lucide-react";
 import { tasksApi, Task } from "@/lib/tasksApi";
 
@@ -251,6 +252,14 @@ function TaskCard({
           {task.status ? "Completed" : "Pending"}
         </span>
         <div style={{ display: "flex", gap: "4px" }}>
+          <Link
+            href={`/dashboard/tasks/${task.id}`}
+            className="btn btn-ghost btn-icon btn-sm"
+            title="View details"
+            style={{ display: "inline-flex" }}
+          >
+            <Eye size={14} />
+          </Link>
           <button
             onClick={() => onEdit(task)}
             className="btn btn-ghost btn-icon btn-sm"
@@ -346,6 +355,14 @@ function TaskRow({
       </p>
 
       <div style={{ display: "flex", gap: "4px", flexShrink: 0 }}>
+        <Link
+          href={`/dashboard/tasks/${task.id}`}
+          className="btn btn-ghost btn-icon btn-sm"
+          title="View details"
+          style={{ display: "inline-flex" }}
+        >
+          <Eye size={14} />
+        </Link>
         <button onClick={() => onEdit(task)} className="btn btn-ghost btn-icon btn-sm" title="Edit">
           <Pencil size={14} />
         </button>
